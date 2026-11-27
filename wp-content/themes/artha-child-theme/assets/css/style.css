@@ -13986,3 +13986,9 @@ footer {
     min-width: 320px;
   }
 }
+
+
+
+.wpcf7-form-control-wrap {
+    position: static !important;
+}

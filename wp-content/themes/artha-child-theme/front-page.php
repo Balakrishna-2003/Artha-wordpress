@@ -1,8 +1,8 @@
 <?php 
     get_header();
 ?>
-<article>
-      <!-- HERO (ANIMATED CAROUSEL) -->
+ <article>
+    <!-- HERO (ANIMATED CAROUSEL) -->
     <section class="hero" id="home">
       <div class="wrap hero-grid">
         <!-- Hero Arrows -->
@@ -51,7 +51,7 @@
             <div class="hero-ctas slide-el">
               <!-- <button type="button" class="btn btn-primary">Book Free Consultation</button> -->
               <a
-                href="<?php echo home_url('/contact-us'); ?> #contact-form-section"
+                href="<?php echo home_url('/contact-us'); ?>#contact-form-section"
                 class="btn btn-primary"
                 >Book Free Consultation <span class="arrow">&rarr;</span></a
               >
@@ -397,7 +397,7 @@
                   >Hire Staff</a
                 >
                 <a
-                  href="<?php echo home_url('/careers'); ?>"
+                  href="<?php echo home_url('/careers');?>"
                   class="svc-btn svc-btn-outline"
                   >Apply for Job</a
                 >
@@ -826,12 +826,9 @@
           </p>
         </div>
 
-        <div class="app-form-wrap">
-          <form
-            id="hotelJobApplicationForm"
-            class="app-form-card anim-base anim-fade-up"
-            novalidate
-          >
+        <div class="app-form-wrap anim-base anim-fade-up">
+          <?php echo do_shortcode('[contact-form-7 id="731c4b4" title="Job Form"]'); ?>
+          <!-- <form id="hotelJobApplicationForm" novalidate>
             <div class="app-form-grid">
               <div class="app-field">
                 <label for="app-name">Full Name <span>*</span></label>
@@ -858,6 +855,17 @@
               </div>
 
               <div class="app-field">
+                <label for="app-email">Email Address <span>*</span></label>
+                <input
+                  type="email"
+                  id="app-email"
+                  name="email"
+                  placeholder="Enter your email address"
+                  required
+                />
+              </div>
+
+              <div class="app-field">
                 <label for="app-city">City <span>*</span></label>
                 <select id="app-city" name="city" required>
                   <option value="">Select city</option>
@@ -867,65 +875,19 @@
               </div>
 
               <div class="app-field">
-                <label for="app-role-search"
+                <label for="app-role"
                   >Job Role Interested In <span>*</span></label
                 >
-                <div class="searchable-select" id="appRoleDropdown">
-                  <div class="searchable-select-control">
-                    <!-- <i
-                      class="fas fa-magnifying-glass searchable-select-search-ic"
-                      aria-hidden="true"
-                    ></i> -->
-                    <input
-                      type="text"
-                      id="app-role-search"
-                      class="searchable-select-input"
-                      placeholder="Search or select job role..."
-                      autocomplete="off"
-                      role="combobox"
-                      aria-expanded="false"
-                      aria-autocomplete="list"
-                      aria-controls="app-role-list"
-                    />
-                    <button
-                      type="button"
-                      class="searchable-select-toggle"
-                      aria-label="Toggle job role options"
-                      tabindex="-1"
-                    >
-                      <i class="fas fa-chevron-down" aria-hidden="true"></i>
-                    </button>
-                  </div>
-                  <ul
-                    id="app-role-list"
-                    class="searchable-select-list"
-                    role="listbox"
-                    hidden
-                  ></ul>
-                  <select
-                    id="app-role"
-                    name="jobRole"
-                    class="searchable-select-native"
-                    required
-                    tabindex="-1"
-                    aria-hidden="true"
-                  >
-                    <option value="">Select job role</option>
-                    <option value="Chef">Chef</option>
-                    <option value="Front Office">Front Office</option>
-                    <option value="Housekeeping">Housekeeping</option>
-                    <option value="F&amp;B Service">F&amp;B Service</option>
-                    <option value="Barista / Bartender">
-                      Barista / Bartender
-                    </option>
-                    <option value="Management Trainee">
-                      Management Trainee
-                    </option>
-                  </select>
-                </div>
+                <input
+                  type="text"
+                  id="app-role"
+                  name="jobRole"
+                  placeholder="Enter job role (e.g. Chef, Front Office)"
+                  required
+                />
               </div>
 
-              <div class="app-field full">
+              <div class="app-field">
                 <label for="app-exp">Experience <span>*</span></label>
                 <select id="app-exp" name="experience" required>
                   <option value="">Select experience</option>
@@ -960,6 +922,16 @@
                 </div>
               </div>
 
+              <div class="app-field full">
+                <label for="app-message">Message <small>(Optional)</small></label>
+                <textarea
+                  id="app-message"
+                  name="message"
+                  rows="4"
+                  placeholder="Tell us briefly about your experience, skills, or availability..."
+                ></textarea>
+              </div>
+
               <div class="app-submit-row">
                 <button type="submit" class="app-submit-btn">
                   Submit Application
@@ -973,7 +945,7 @@
                 aria-live="polite"
               ></div>
             </div>
-          </form>
+          </form> -->
 
           <div class="wa-apply-box anim-base anim-fade-up delay-100">
             <div class="wa-apply-copy">
@@ -1343,7 +1315,7 @@
             <h2>Need Staff for Your Hotel?</h2>
             <p>Hire trained, verified staff with Artha.</p>
             <a
-              href="<?php echo home_url('/contact-us'); ?>l#contact-form-section"
+              href="<?php echo home_url('/contact-us'); ?>#contact-form-section"
               class="btn"
               >Hire Staff Now <span class="arrow">&rarr;</span></a
             >
@@ -1366,8 +1338,104 @@
         </div>
       </div>
     </section>
-</article>
+    </article>
 
+
+<script>
+(function () {
+  "use strict";
+
+  const form = document.getElementById("hotelJobApplicationForm");
+  const cvInput = document.getElementById("app-cv");
+  const cvFilename = document.getElementById("app-cv-filename");
+  const uploadBox = cvInput ? cvInput.closest(".app-upload-box") : null;
+  const uploadIcon = uploadBox ? uploadBox.querySelector(".app-upload-ic i") : null;
+  const roleInput = document.getElementById("app-role");
+  const statusEl = document.getElementById("app-form-status");
+  const allowedExt = /\.(pdf|doc|docx)$/i;
+
+  // "Apply Now" buttons on job cards → prefill the Job Role field
+  document.querySelectorAll(".job-apply-btn[data-job-role]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      if (roleInput && btn.dataset.jobRole) {
+        roleInput.value = btn.dataset.jobRole;
+      }
+    });
+  });
+
+  // CV file picker feedback + client-side extension check
+  if (cvInput && cvFilename) {
+    cvInput.addEventListener("change", () => {
+      const file = cvInput.files && cvInput.files[0];
+      if (!file) {
+        cvFilename.textContent = "Choose a file to upload";
+        if (uploadIcon) uploadIcon.className = "fas fa-cloud-arrow-up";
+        return;
+      }
+      if (!allowedExt.test(file.name)) {
+        cvInput.value = "";
+        cvFilename.textContent = "Choose a file to upload";
+        if (uploadIcon) uploadIcon.className = "fas fa-cloud-arrow-up";
+        if (statusEl) {
+          statusEl.className = "app-form-status error";
+          statusEl.textContent =
+            "Please upload a valid CV/Resume file (.pdf, .doc, or .docx).";
+        }
+        return;
+      }
+      if (statusEl) {
+        statusEl.className = "app-form-status";
+        statusEl.textContent = "";
+      }
+      cvFilename.textContent = "Chosen file: " + file.name;
+      if (uploadIcon) uploadIcon.className = "fas fa-file-circle-check";
+    });
+  }
+
+  // Submit validation (no backend — validation only, as in your original)
+  if (form && statusEl) {
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const name = document.getElementById("app-name").value.trim();
+      const phone = document.getElementById("app-phone").value.trim();
+      const emailEl = document.getElementById("app-email");
+      const email = emailEl ? emailEl.value.trim() : "";
+      const city = document.getElementById("app-city").value;
+      const role = roleInput ? roleInput.value.trim() : "";
+      const exp = document.getElementById("app-exp").value;
+      const file = cvInput && cvInput.files && cvInput.files[0];
+
+      if (!name || !phone || !email || !city || !role || !exp) {
+        statusEl.className = "app-form-status error";
+        statusEl.textContent =
+          "Please fill in all required fields (Full Name, Phone / WhatsApp Number, Email Address, City, Job Role, and Experience).";
+        return;
+      }
+      if (!/^[0-9+\-\s()]{7,20}$/.test(phone)) {
+        statusEl.className = "app-form-status error";
+        statusEl.textContent = "Please enter a valid Phone / WhatsApp Number.";
+        return;
+      }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        statusEl.className = "app-form-status error";
+        statusEl.textContent = "Please enter a valid Email Address.";
+        return;
+      }
+      if (file && !allowedExt.test(file.name)) {
+        statusEl.className = "app-form-status error";
+        statusEl.textContent =
+          "Please upload a valid CV/Resume file (.pdf, .doc, or .docx).";
+        return;
+      }
+
+      statusEl.className = "app-form-status info";
+      statusEl.textContent =
+        'Details validated and ready. Connect a backend form endpoint to receive submissions, or click "Apply via WhatsApp" below to send your details directly.';
+    });
+  }
+})();
+</script>
 
 <script>
 /* ============ HOTEL JOB APPLICATION FORM ============ */
