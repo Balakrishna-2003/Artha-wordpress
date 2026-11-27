@@ -1538,7 +1538,9 @@ header.scrolled .brand-logo {
   max-width: 780px;
   margin: 0 auto;
 }
-.app-form-card {
+.app-form-card,
+.app-form-wrap form,
+#hotelJobApplicationForm {
   background: var(--cream);
   border: 1px solid rgba(26, 23, 24, 0.08);
   border-top: 3px solid var(--burnt);
@@ -1573,6 +1575,7 @@ header.scrolled .brand-logo {
 }
 .app-field input[type="text"],
 .app-field input[type="tel"],
+.app-field input[type="email"],
 .app-field select {
   width: 100%;
   height: 48px;
@@ -1587,8 +1590,25 @@ header.scrolled .brand-logo {
     border-color 0.2s ease,
     box-shadow 0.2s ease;
 }
+.app-field textarea {
+  width: 100%;
+  min-height: 110px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1.5px solid rgba(26, 23, 24, 0.16);
+  background: var(--offwhite);
+  color: var(--espresso);
+  font-family: inherit;
+  font-size: 0.94rem;
+  line-height: 1.55;
+  resize: vertical;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
 .app-field input:focus,
-.app-field select:focus {
+.app-field select:focus,
+.app-field textarea:focus {
   outline: none;
   border-color: var(--burnt);
   box-shadow: 0 0 0 3px rgba(196, 22, 28, 0.12);
@@ -1854,7 +1874,9 @@ header.scrolled .brand-logo {
   transform: translateY(-2px);
 }
 @media (max-width: 767.98px) {
-  .app-form-card {
+  .app-form-card,
+  .app-form-wrap form,
+  #hotelJobApplicationForm {
     padding: 28px 20px;
   }
   .app-form-grid {
@@ -13603,7 +13625,9 @@ footer {
   max-width: 780px;
   margin: 0 auto;
 }
-.app-form-card {
+.app-form-card,
+.app-form-wrap form,
+#hotelJobApplicationForm {
   background: var(--cream);
   border: 1px solid rgba(26,23,24,0.08);
   border-top: 3px solid var(--burnt);
@@ -13634,6 +13658,7 @@ footer {
 }
 .app-field input[type="text"],
 .app-field input[type="tel"],
+.app-field input[type="email"],
 .app-field select {
   width: 100%;
   height: 48px;
@@ -13900,7 +13925,9 @@ footer {
 }
 
 @media (max-width: 767.98px) {
-  .app-form-card { padding: 28px 20px; }
+  .app-form-card,
+  .app-form-wrap form,
+  #hotelJobApplicationForm { padding: 28px 20px; }
   .app-form-grid { grid-template-columns: 1fr; }
   .wa-apply-box {
     flex-direction: column;
